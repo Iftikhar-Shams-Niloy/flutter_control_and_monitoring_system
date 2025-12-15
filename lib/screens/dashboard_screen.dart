@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_control_and_monitoring_system/widgets/circular_chart.dart';
+import 'package:flutter_control_and_monitoring_system/widgets/data_card.dart';
+import 'package:flutter_control_and_monitoring_system/widgets/menu_card.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -19,10 +21,6 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {},
-        ),
         title: const Text(
           'SCM',
           style: TextStyle(
@@ -105,77 +103,85 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
 
                     const SizedBox(height: 32),
 
-                    // Source/Load Toggle
+                    // Source/Load Toggle (sliding switch)
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isSourceSelected = true;
-                                });
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 14,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: isSourceSelected
-                                      ? const Color(0xFF0098FF)
-                                      : Colors.grey[200],
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Source',
-                                    style: TextStyle(
-                                      color: isSourceSelected
-                                          ? Colors.white
-                                          : Colors.grey[600],
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                      child: Container(
+                        height: 52,
+                        padding: const EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Stack(
+                          children: [
+                            AnimatedAlign(
+                              duration: const Duration(milliseconds: 200),
+                              curve: Curves.easeInOut,
+                              alignment: isSourceSelected
+                                  ? Alignment.centerLeft
+                                  : Alignment.centerRight,
+                              child: FractionallySizedBox(
+                                widthFactor: 0.5,
+                                child: Container(
+                                  margin: const EdgeInsets.symmetric(
+                                    horizontal: 2,
+                                    vertical: 2,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFF0098FF),
+                                    borderRadius: BorderRadius.circular(28),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isSourceSelected = false;
-                                });
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 14,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: !isSourceSelected
-                                      ? const Color(0xFF0098FF)
-                                      : Colors.grey[200],
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Load',
-                                    style: TextStyle(
-                                      color: !isSourceSelected
-                                          ? Colors.white
-                                          : Colors.grey[600],
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600,
+
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: GestureDetector(
+                                    onTap: () => setState(() {
+                                      isSourceSelected = true;
+                                    }),
+                                    behavior: HitTestBehavior.translucent,
+                                    child: Center(
+                                      child: Text(
+                                        'Source',
+                                        style: TextStyle(
+                                          color: isSourceSelected
+                                              ? Colors.white
+                                              : Colors.grey[600],
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
+                                Expanded(
+                                  child: GestureDetector(
+                                    onTap: () => setState(() {
+                                      isSourceSelected = false;
+                                    }),
+                                    behavior: HitTestBehavior.translucent,
+                                    child: Center(
+                                      child: Text(
+                                        'Load',
+                                        style: TextStyle(
+                                          color: !isSourceSelected
+                                              ? Colors.white
+                                              : Colors.grey[600],
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
 
@@ -189,35 +195,62 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
 
                     const SizedBox(height: 16),
 
-                    // Data View Cards
+                    // Data View Cards (show 3 visible, scroll if more)
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Column(
-                        children: [
-                          _buildDataCard(
-                            'Data View',
-                            'Active',
-                            'solar_panel.png',
-                            const Color(0xFF5DADE2),
-                            true,
-                          ),
-                          const SizedBox(height: 12),
-                          _buildDataCard(
-                            'Data Type 2',
-                            'Active',
-                            'generator.png',
-                            const Color(0xFFF39C12),
-                            true,
-                          ),
-                          const SizedBox(height: 12),
-                          _buildDataCard(
-                            'Data Type 3',
-                            'Inactive',
-                            'power_line.png',
-                            const Color(0xFF5DADE2),
-                            false,
-                          ),
-                        ],
+                      child: SizedBox(
+                        // approx height for 3 cards + spacing (adjust if needed)
+                        height: 3 * 118,
+                        child: Builder(
+                          builder: (context) {
+                            final cards = [
+                              const DataCard(
+                                'Data View',
+                                'Active',
+                                'solar_panel.png',
+                                Color(0xFF5DADE2),
+                                true,
+                              ),
+                              const DataCard(
+                                'Data View',
+                                'Active',
+                                'solar_panel.png',
+                                Color(0xFF5DADE2),
+                                true,
+                              ),
+                              const DataCard(
+                                'Data Type 2',
+                                'Active',
+                                'generator.png',
+                                Color(0xFFF39C12),
+                                true,
+                              ),
+                              const DataCard(
+                                'Data Type 3',
+                                'Inactive',
+                                'power_line.png',
+                                Color(0xFF5DADE2),
+                                false,
+                              ),
+                              const DataCard(
+                                'Total Solar',
+                                'Active',
+                                'power_line.png',
+                                Color(0xFF5DADE2),
+                                true,
+                              ),
+                            ];
+
+                            return ListView.separated(
+                              padding: EdgeInsets.zero,
+                              physics: const AlwaysScrollableScrollPhysics(),
+                              itemCount: cards.length,
+                              separatorBuilder: (_, _) =>
+                                  const SizedBox(height: 12),
+                              itemBuilder: (context, index) => cards[index],
+                            );
+                          },
+                        ),
                       ),
                     ),
 
@@ -237,12 +270,12 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
                 crossAxisSpacing: 12,
                 childAspectRatio: 2.5,
                 children: [
-                  _buildMenuCard('Analysis Pro', 'analysis_icon.png'),
-                  _buildMenuCard('G. Generator', 'g_generator_icon.png'),
-                  _buildMenuCard('Plant Summery', 'plant_icon.png'),
-                  _buildMenuCard('Natural Gas', 'gas_icon.png'),
-                  _buildMenuCard('D. Generator', 'd_generator_icon.png'),
-                  _buildMenuCard('Water Process', 'water_icon.png'),
+                  const MenuCard('Analysis Pro', 'analysis_icon.png'),
+                  const MenuCard('G. Generator', 'g_generator_icon.png'),
+                  const MenuCard('Plant Summery', 'plant_icon.png'),
+                  const MenuCard('Natural Gas', 'gas_icon.png'),
+                  const MenuCard('D. Generator', 'd_generator_icon.png'),
+                  const MenuCard('Water Process', 'water_icon.png'),
                 ],
               ),
             ],
@@ -285,138 +318,5 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  Widget _buildDataCard(
-    String title,
-    String status,
-    String iconPath,
-    Color indicatorColor,
-    bool isActive,
-  ) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isActive ? const Color(0xFFE8F4F8) : Colors.grey[200],
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey[300]!, width: 1),
-      ),
-      child: Row(
-        children: [
-          // Icon
-          Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Center(
-              child: Image.asset(
-                iconPath,
-                width: 35,
-                height: 35,
-                errorBuilder: (context, error, stackTrace) {
-                  return Icon(Icons.image, size: 35, color: Colors.grey[400]);
-                },
-              ),
-            ),
-          ),
-          const SizedBox(width: 12),
-
-          // Title and Status
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      width: 12,
-                      height: 12,
-                      decoration: BoxDecoration(
-                        color: indicatorColor,
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black87,
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      '($status)',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: isActive ? const Color(0xFF0098FF) : Colors.red,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Data 1    : 55505.63',
-                  style: TextStyle(fontSize: 14, color: Colors.grey[700]),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  'Data 2    : 58805.63',
-                  style: TextStyle(fontSize: 14, color: Colors.grey[700]),
-                ),
-              ],
-            ),
-          ),
-
-          // Arrow
-          Icon(Icons.chevron_right, color: Colors.grey[600], size: 28),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildMenuCard(String title, String iconPath) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 4,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        child: Row(
-          children: [
-            Image.asset(
-              iconPath,
-              width: 36,
-              height: 36,
-              errorBuilder: (context, error, stackTrace) {
-                return Icon(Icons.image, size: 36, color: Colors.grey[400]);
-              },
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF5A6C7D),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  // MenuCard widget moved to `lib/widgets/menu_card.dart` as `MenuCard`.
 }
