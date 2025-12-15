@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_control_and_monitoring_system/core/app_colors.dart';
+import 'package:flutter_control_and_monitoring_system/dummy_data.dart';
+import 'package:flutter_control_and_monitoring_system/screens/data_details_screen.dart';
 import 'package:flutter_control_and_monitoring_system/widgets/circular_chart.dart';
 import 'package:flutter_control_and_monitoring_system/widgets/data_card.dart';
 import 'package:flutter_control_and_monitoring_system/widgets/menu_card.dart';
@@ -194,53 +196,26 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: SizedBox(
                         height: 3 * 102,
-                        child: Builder(
-                          builder: (context) {
-                            final cards = [
-                              const DataCard(
-                                'Data View',
-                                'Active',
-                                'solar_panel.png',
-                                Color(0xFF5DADE2),
-                                true,
-                              ),
-                              const DataCard(
-                                'Data View',
-                                'Active',
-                                'solar_panel.png',
-                                Color(0xFF5DADE2),
-                                true,
-                              ),
-                              const DataCard(
-                                'Data Type 2',
-                                'Active',
-                                'generator.png',
-                                Color(0xFFF39C12),
-                                true,
-                              ),
-                              const DataCard(
-                                'Data Type 3',
-                                'Inactive',
-                                'power_line.png',
-                                Color(0xFF5DADE2),
-                                false,
-                              ),
-                              const DataCard(
-                                'Total Solar',
-                                'Active',
-                                'power_line.png',
-                                Color(0xFF5DADE2),
-                                true,
-                              ),
-                            ];
-
-                            return ListView.separated(
-                              padding: EdgeInsets.zero,
-                              physics: const AlwaysScrollableScrollPhysics(),
-                              itemCount: cards.length,
-                              separatorBuilder: (_, _) =>
-                                  const SizedBox(height: 12),
-                              itemBuilder: (context, index) => cards[index],
+                        child: ListView.separated(
+                          padding: EdgeInsets.zero,
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          itemCount: DummyData.dataSources.length,
+                          separatorBuilder: (_, __) =>
+                              const SizedBox(height: 12),
+                          itemBuilder: (context, index) {
+                            final dataSource = DummyData.dataSources[index];
+                            return DataCard(
+                              dataSource: dataSource,
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DataDetailsScreen(
+                                      dataSource: dataSource,
+                                    ),
+                                  ),
+                                );
+                              },
                             );
                           },
                         ),
