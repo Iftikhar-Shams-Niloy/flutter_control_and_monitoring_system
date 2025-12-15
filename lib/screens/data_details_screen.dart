@@ -52,100 +52,149 @@ class _DataViewScreenState extends State<DataDetailsScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              // Top Toggle (Data View / Revenue View)
-              ViewToggleWidget(
-                isDataView: isDataView,
-                onToggle: (value) {
-                  setState(() {
-                    isDataView = value;
-                  });
-                },
-              ),
-
-              const SizedBox(height: 24),
-
-              // Circular Progress
-              CircularProgressWidget(
-                value: isDataView
-                    ? widget.dataSource.energyDetails.totalValue
-                    : widget.dataSource.energyDetails.revenueValue,
-                unit: isDataView
-                    ? widget.dataSource.energyDetails.unit
-                    : widget.dataSource.energyDetails.revenueUnit,
-                percentage: widget.dataSource.energyDetails.percentage,
-              ),
-
-              const SizedBox(height: 24),
-
-              if (isDataView) ...[
-                DateToggleWidget(
-                  isTodayData: isTodayData,
-                  onToggle: (value) {
-                    setState(() {
-                      isTodayData = value;
-                    });
-                  },
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: MediaQuery.of(context).size.height - 32,
                 ),
-
-                // Date Pickers (only for Custom Date Data)
-                if (!isTodayData) ...[
-                  const SizedBox(height: 16),
-                  DateRangePickerWidget(
-                    fromDate: fromDate,
-                    toDate: toDate,
-                    onFromDateChanged: (date) {
-                      setState(() {
-                        fromDate = date;
-                      });
-                    },
-                    onToDateChanged: (date) {
-                      setState(() {
-                        toDate = date;
-                      });
-                    },
-                    onSearch: () {
-                      // Handle search
-                    },
-                  ),
-                ],
-
-                const SizedBox(height: 12),
-              ],
-
-              // Energy Chart Section
-              if (isDataView && isTodayData)
-                EnergyChartWidget(
-                  title: widget.dataSource.energyDetails.chartTitle,
-                  totalValue: widget.dataSource.energyDetails.chartTotalValue,
-                  dataItems: widget.dataSource.energyDetails.dataItems,
-                )
-              else if (isDataView && !isTodayData)
-                Column(
+                child: Stack(
+                  clipBehavior: Clip.none,
                   children: [
-                    EnergyChartWidget(
-                      title: widget.dataSource.energyDetails.chartTitle,
-                      totalValue:
-                          widget.dataSource.energyDetails.chartTotalValue,
-                      dataItems: widget.dataSource.energyDetails.dataItems,
+                    Positioned(
+                      top: 30,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(16),
+                            topRight: Radius.circular(16),
+                          ),
+                        ),
+                        padding: const EdgeInsets.fromLTRB(16, 46, 16, 16),
+                      ),
                     ),
-                    const SizedBox(height: 24),
-                    EnergyChartWidget(
-                      title:
-                          '${widget.dataSource.energyDetails.chartTitle} (History)',
-                      totalValue:
-                          widget.dataSource.energyDetails.chartTotalValue,
-                      dataItems: widget.dataSource.energyDetails.dataItems,
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: Column(
+                        children: [
+                          // ViewToggleWidget
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 8.0,
+                              horizontal: 24,
+                            ),
+                            child: ViewToggleWidget(
+                              isDataView: isDataView,
+                              onToggle: (value) {
+                                setState(() {
+                                  isDataView = value;
+                                });
+                              },
+                            ),
+                          ),
+                          CircularProgressWidget(
+                            value: isDataView
+                                ? widget.dataSource.energyDetails.totalValue
+                                : widget.dataSource.energyDetails.revenueValue,
+                            unit: isDataView
+                                ? widget.dataSource.energyDetails.unit
+                                : widget.dataSource.energyDetails.revenueUnit,
+                            percentage:
+                                widget.dataSource.energyDetails.percentage,
+                          ),
+
+                          const SizedBox(height: 24),
+
+                          if (isDataView) ...[
+                            DateToggleWidget(
+                              isTodayData: isTodayData,
+                              onToggle: (value) {
+                                setState(() {
+                                  isTodayData = value;
+                                });
+                              },
+                            ),
+
+                            // Date Pickers
+                            if (!isTodayData) ...[
+                              const SizedBox(height: 16),
+                              DateRangePickerWidget(
+                                fromDate: fromDate,
+                                toDate: toDate,
+                                onFromDateChanged: (date) {
+                                  setState(() {
+                                    fromDate = date;
+                                  });
+                                },
+                                onToDateChanged: (date) {
+                                  setState(() {
+                                    toDate = date;
+                                  });
+                                },
+                                onSearch: () {},
+                              ),
+                            ],
+
+                            const SizedBox(height: 12),
+                          ],
+
+                          // Energy Chart Section
+                          if (isDataView && isTodayData)
+                            EnergyChartWidget(
+                              title: widget.dataSource.energyDetails.chartTitle,
+                              totalValue: widget
+                                  .dataSource
+                                  .energyDetails
+                                  .chartTotalValue,
+                              dataItems:
+                                  widget.dataSource.energyDetails.dataItems,
+                            )
+                          else if (isDataView && !isTodayData)
+                            Column(
+                              children: [
+                                EnergyChartWidget(
+                                  title: widget
+                                      .dataSource
+                                      .energyDetails
+                                      .chartTitle,
+                                  totalValue: widget
+                                      .dataSource
+                                      .energyDetails
+                                      .chartTotalValue,
+                                  dataItems:
+                                      widget.dataSource.energyDetails.dataItems,
+                                ),
+                                const SizedBox(height: 24),
+                                EnergyChartWidget(
+                                  title:
+                                      '${widget.dataSource.energyDetails.chartTitle} (History)',
+                                  totalValue: widget
+                                      .dataSource
+                                      .energyDetails
+                                      .chartTotalValue,
+                                  dataItems:
+                                      widget.dataSource.energyDetails.dataItems,
+                                ),
+                              ],
+                            )
+                          else
+                            DataCostInfoWidget(
+                              dataItems:
+                                  widget.dataSource.energyDetails.costItems,
+                            ),
+                        ],
+                      ),
                     ),
                   ],
-                )
-              else
-                DataCostInfoWidget(
-                  dataItems: widget.dataSource.energyDetails.costItems,
                 ),
-            ],
+              );
+            },
           ),
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_control_and_monitoring_system/core/app_colors.dart';
 
 class ViewToggleWidget extends StatelessWidget {
   final bool isDataView;
@@ -37,16 +38,16 @@ class ViewToggleWidget extends StatelessWidget {
                       Icons.circle,
                       size: 20,
                       color: isDataView
-                          ? const Color(0xFF0098FF)
-                          : Colors.grey[400],
+                          ? AppColors.primaryBlue
+                          : AppColors.borderGrey,
                     ),
                     const SizedBox(width: 8),
                     Text(
                       'Data View',
                       style: TextStyle(
                         color: isDataView
-                            ? const Color(0xFF0098FF)
-                            : Colors.grey[600],
+                            ? AppColors.primaryBlue
+                            : AppColors.borderGrey,
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                       ),
