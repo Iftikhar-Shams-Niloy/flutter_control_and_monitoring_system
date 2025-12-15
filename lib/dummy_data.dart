@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_control_and_monitoring_system/core/app_colors.dart';
 import 'package:flutter_control_and_monitoring_system/models/data_source.dart';
 import 'package:flutter_control_and_monitoring_system/models/energy_details.dart';
 import 'package:flutter_control_and_monitoring_system/models/energy_data_item.dart';
 import 'package:flutter_control_and_monitoring_system/models/cost_data_item.dart';
 
-/// Dummy data for the application
 class DummyData {
-  // Prevent instantiation
   DummyData._();
 
-  /// List of data sources displayed on dashboard
   static final List<DataSource> dataSources = [
     DataSource(
       id: 'solar_1',
       title: 'Solar Panel',
       status: 'Active',
-      iconPath: 'assets/icons/solar_panel.png',
-      indicatorColor: const Color(0xFF5DADE2),
+      iconPath: 'assets/icons/solar_icon.png',
+      indicatorColor: AppColors.dataBlue,
       isActive: true,
       summaryData: {'Energy': '55505.63 kWh', 'Power': '58805.63 W'},
       energyDetails: const EnergyDetails(
@@ -70,11 +68,11 @@ class DummyData {
       ),
     ),
     DataSource(
-      id: 'solar_2',
-      title: 'Solar Array 2',
+      id: 'data_2',
+      title: 'Data Type 2',
       status: 'Active',
-      iconPath: 'assets/icons/solar_panel.png',
-      indicatorColor: const Color(0xFF5DADE2),
+      iconPath: 'assets/icons/battery_icon.png',
+      indicatorColor: AppColors.dataBlue,
       isActive: true,
       summaryData: {'Energy': '42350.25 kWh', 'Power': '45200.80 W'},
       energyDetails: const EnergyDetails(
@@ -116,11 +114,11 @@ class DummyData {
       ),
     ),
     DataSource(
-      id: 'generator_1',
-      title: 'Generator',
+      id: 'data_3',
+      title: 'Data Type 3',
       status: 'Active',
-      iconPath: 'assets/icons/generator_icon.png',
-      indicatorColor: const Color(0xFFF39C12),
+      iconPath: 'assets/icons/antena_icon.png',
+      indicatorColor: AppColors.dataOrange,
       isActive: true,
       summaryData: {'Fuel Used': '1250.00 L', 'Output': '32500.75 kWh'},
       energyDetails: const EnergyDetails(
@@ -165,8 +163,8 @@ class DummyData {
       id: 'grid_1',
       title: 'Power Grid',
       status: 'Inactive',
-      iconPath: 'assets/icons/power_line.png',
-      indicatorColor: const Color(0xFF5DADE2),
+      iconPath: 'assets/icons/battery_icon.png',
+      indicatorColor: AppColors.dataBlue,
       isActive: false,
       summaryData: {'Import': '0.00 kWh', 'Export': '0.00 kWh'},
       energyDetails: const EnergyDetails(
@@ -205,8 +203,8 @@ class DummyData {
       id: 'total_solar',
       title: 'Total Solar',
       status: 'Active',
-      iconPath: 'assets/icons/solar_panel.png',
-      indicatorColor: const Color(0xFF5DADE2),
+      iconPath: 'assets/icons/solar_icon.png',
+      indicatorColor: AppColors.dataBlue,
       isActive: true,
       summaryData: {
         'Total Energy': '97855.88 kWh',

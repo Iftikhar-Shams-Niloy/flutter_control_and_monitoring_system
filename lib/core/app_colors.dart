@@ -17,4 +17,6 @@ class AppColors {
   static const borderGrey = Color(0xFFA5A7B9);
   static const cardActive = Color(0xFFE5F4FE);
   static const sliderBackgroudnGrey = Color(0xFFE2EBF1);
+  static const semiCircleProgressColor = Color(0xFF4E91FD);
+  static const semiCircleIncompleteColor = Color(0xFFE6F4FF);
 }

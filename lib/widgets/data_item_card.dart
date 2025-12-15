@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_control_and_monitoring_system/models/energy_data_item.dart';
 
-/// Data Item Card displaying a single energy data item
 class DataItemCard extends StatelessWidget {
   final EnergyDataItem item;
 

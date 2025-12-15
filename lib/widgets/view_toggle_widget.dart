@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// View Toggle Widget for switching between Data View and Revenue View
 class ViewToggleWidget extends StatelessWidget {
   final bool isDataView;
   final Function(bool) onToggle;

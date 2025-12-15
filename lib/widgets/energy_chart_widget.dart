@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_control_and_monitoring_system/models/energy_data_item.dart';
 import 'package:flutter_control_and_monitoring_system/widgets/data_item_card.dart';
 
-/// Energy Chart Widget displaying title, total value, and list of data items
 class EnergyChartWidget extends StatelessWidget {
   final String title;
   final String totalValue;

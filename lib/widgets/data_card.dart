@@ -21,7 +21,7 @@ class DataCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            // Icon
+            
             Container(
               width: 50,
               height: 50,
@@ -35,7 +35,7 @@ class DataCard extends StatelessWidget {
                   width: 35,
                   height: 35,
                   errorBuilder: (context, error, stackTrace) {
-                    return Icon(Icons.image, size: 35, color: Colors.grey[400]);
+                    return Icon(Icons.image, size: 32);
                   },
                 ),
               ),
@@ -82,13 +82,14 @@ class DataCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 8),
-                  // Dynamic data from summaryData map
+
+                  SizedBox(height: 2),
+
                   ...dataSource.summaryData.entries.map(
                     (entry) => Padding(
-                      padding: const EdgeInsets.only(bottom: 4),
+                      padding: const EdgeInsets.only(bottom: 2),
                       child: Text(
-                        '${entry.key}    : ${entry.value}',
+                        '${entry.key} : ${entry.value}',
                         style: TextStyle(fontSize: 14, color: Colors.grey[700]),
                       ),
                     ),
@@ -97,8 +98,7 @@ class DataCard extends StatelessWidget {
               ),
             ),
 
-            // Arrow
-            Icon(Icons.chevron_right, color: Colors.grey[600], size: 28),
+            Icon(Icons.chevron_right, color: AppColors.textHintGrey, size: 28),
           ],
         ),
       ),

@@ -20,7 +20,7 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE8EEF2),
+      backgroundColor: AppColors.backgroundGrey,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -80,7 +80,8 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
                         _buildTab('Data', 2),
                       ],
                     ),
-                    const SizedBox(height: 24),
+
+                    const SizedBox(height: 12),
 
                     const Text(
                       'Electricity',
@@ -92,7 +93,8 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
                       ),
                     ),
 
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 12),
+
                     Container(
                       height: 2,
                       margin: const EdgeInsets.symmetric(horizontal: 24),
@@ -100,12 +102,10 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
                     ),
                     const SizedBox(height: 32),
 
-                    // Circular Chart
                     const CircularChart(),
 
                     const SizedBox(height: 32),
 
-                    // Source/Load Toggle (sliding switch)
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       child: Container(
@@ -195,7 +195,7 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: SizedBox(
-                        height: 3 * 102,
+                        height: 3 * 96,
                         child: ListView.separated(
                           padding: EdgeInsets.zero,
                           physics: const AlwaysScrollableScrollPhysics(),
@@ -280,25 +280,30 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
             selectedTabIndex = index;
           });
         },
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          decoration: BoxDecoration(
-            color: isSelected ? AppColors.primaryBlue : Colors.transparent,
-            borderRadius: BorderRadius.only(
-              topLeft: index == 0 ? const Radius.circular(16) : Radius.zero,
-              topRight: index == 2 ? const Radius.circular(16) : Radius.zero,
-            ),
-          ),
-          child: Center(
-            child: Text(
-              title,
-              style: TextStyle(
-                color: isSelected ? Colors.white : Colors.grey[600],
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              decoration: BoxDecoration(
+                color: isSelected ? AppColors.primaryBlue : Colors.transparent,
+                borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(16),
+                  topRight: const Radius.circular(16),
+                ),
+              ),
+              child: Center(
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    color: isSelected ? Colors.white : Colors.grey[600],
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ),
             ),
-          ),
+            Divider(thickness: 2, color: AppColors.borderGrey, height: 2),
+          ],
         ),
       ),
     );

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Date Range Picker Widget with From Date, To Date, and Search button
 class DateRangePickerWidget extends StatelessWidget {
   final DateTime? fromDate;
   final DateTime? toDate;

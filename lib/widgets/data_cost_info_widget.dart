@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_control_and_monitoring_system/models/cost_data_item.dart';
 
-/// Data & Cost Info Widget displaying expandable cost information
 class DataCostInfoWidget extends StatefulWidget {
   final List<CostDataItem> dataItems;
 

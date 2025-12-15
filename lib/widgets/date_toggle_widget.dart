@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Date Toggle Widget for switching between Today Data and Custom Date Data
+
 class DateToggleWidget extends StatelessWidget {
   final bool isTodayData;
   final Function(bool) onToggle;
