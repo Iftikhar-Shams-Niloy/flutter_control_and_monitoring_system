@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_control_and_monitoring_system/models/data_source.dart';
+import 'package:flutter_control_and_monitoring_system/models/energy_details.dart';
+import 'package:flutter_control_and_monitoring_system/models/energy_data_item.dart';
+import 'package:flutter_control_and_monitoring_system/models/cost_data_item.dart';
 
 /// Dummy data for the application
 class DummyData {
@@ -15,10 +18,7 @@ class DummyData {
       iconPath: 'assets/icons/solar_panel.png',
       indicatorColor: const Color(0xFF5DADE2),
       isActive: true,
-      summaryData: {
-        'Energy': '55505.63 kWh',
-        'Power': '58805.63 W',
-      },
+      summaryData: {'Energy': '55505.63 kWh', 'Power': '58805.63 W'},
       energyDetails: const EnergyDetails(
         totalValue: 55.00,
         unit: 'kWh/Sqft',
@@ -76,10 +76,7 @@ class DummyData {
       iconPath: 'assets/icons/solar_panel.png',
       indicatorColor: const Color(0xFF5DADE2),
       isActive: true,
-      summaryData: {
-        'Energy': '42350.25 kWh',
-        'Power': '45200.80 W',
-      },
+      summaryData: {'Energy': '42350.25 kWh', 'Power': '45200.80 W'},
       energyDetails: const EnergyDetails(
         totalValue: 42.35,
         unit: 'kWh/Sqft',
@@ -125,10 +122,7 @@ class DummyData {
       iconPath: 'assets/icons/generator_icon.png',
       indicatorColor: const Color(0xFFF39C12),
       isActive: true,
-      summaryData: {
-        'Fuel Used': '1250.00 L',
-        'Output': '32500.75 kWh',
-      },
+      summaryData: {'Fuel Used': '1250.00 L', 'Output': '32500.75 kWh'},
       energyDetails: const EnergyDetails(
         totalValue: 32.50,
         unit: 'kWh/L',
@@ -174,10 +168,7 @@ class DummyData {
       iconPath: 'assets/icons/power_line.png',
       indicatorColor: const Color(0xFF5DADE2),
       isActive: false,
-      summaryData: {
-        'Import': '0.00 kWh',
-        'Export': '0.00 kWh',
-      },
+      summaryData: {'Import': '0.00 kWh', 'Export': '0.00 kWh'},
       energyDetails: const EnergyDetails(
         totalValue: 0.00,
         unit: 'kWh',

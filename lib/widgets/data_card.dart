@@ -6,11 +6,7 @@ class DataCard extends StatelessWidget {
   final DataSource dataSource;
   final VoidCallback? onTap;
 
-  const DataCard({
-    super.key,
-    required this.dataSource,
-    this.onTap,
-  });
+  const DataCard({super.key, required this.dataSource, this.onTap});
 
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_control_and_monitoring_system/models/data_source.dart';
+import 'package:flutter_control_and_monitoring_system/models/energy_data_item.dart';
+import 'package:flutter_control_and_monitoring_system/models/cost_data_item.dart';
 
 // Main Screen
 class DataDetailsScreen extends StatefulWidget {
   final DataSource dataSource;
 
-  const DataDetailsScreen({Key? key, required this.dataSource})
-    : super(key: key);
+  const DataDetailsScreen({super.key, required this.dataSource});
 
   @override
   State<DataDetailsScreen> createState() => _DataViewScreenState();
@@ -135,16 +136,7 @@ class _DataViewScreenState extends State<DataDetailsScreen> {
                 EnergyChartWidget(
                   title: widget.dataSource.energyDetails.chartTitle,
                   totalValue: widget.dataSource.energyDetails.chartTotalValue,
-                  dataItems: widget.dataSource.energyDetails.dataItems
-                      .map(
-                        (item) => DataItem(
-                          label: item.label,
-                          color: item.color,
-                          data: item.data,
-                          cost: item.cost,
-                        ),
-                      )
-                      .toList(),
+                  dataItems: widget.dataSource.energyDetails.dataItems,
                 )
               else if (isDataView && !isTodayData)
                 Column(
@@ -153,16 +145,7 @@ class _DataViewScreenState extends State<DataDetailsScreen> {
                       title: widget.dataSource.energyDetails.chartTitle,
                       totalValue:
                           widget.dataSource.energyDetails.chartTotalValue,
-                      dataItems: widget.dataSource.energyDetails.dataItems
-                          .map(
-                            (item) => DataItem(
-                              label: item.label,
-                              color: item.color,
-                              data: item.data,
-                              cost: item.cost,
-                            ),
-                          )
-                          .toList(),
+                      dataItems: widget.dataSource.energyDetails.dataItems,
                     ),
                     const SizedBox(height: 24),
                     EnergyChartWidget(
@@ -170,31 +153,13 @@ class _DataViewScreenState extends State<DataDetailsScreen> {
                           '${widget.dataSource.energyDetails.chartTitle} (History)',
                       totalValue:
                           widget.dataSource.energyDetails.chartTotalValue,
-                      dataItems: widget.dataSource.energyDetails.dataItems
-                          .map(
-                            (item) => DataItem(
-                              label: item.label,
-                              color: item.color,
-                              data: item.data,
-                              cost: item.cost,
-                            ),
-                          )
-                          .toList(),
+                      dataItems: widget.dataSource.energyDetails.dataItems,
                     ),
                   ],
                 )
               else
                 DataCostInfoWidget(
-                  dataItems: widget.dataSource.energyDetails.costItems
-                      .map(
-                        (item) => CostDataItemLocal(
-                          dataLabel: item.dataLabel,
-                          dataValue: item.dataValue,
-                          costLabel: item.costLabel,
-                          costValue: item.costValue,
-                        ),
-                      )
-                      .toList(),
+                  dataItems: widget.dataSource.energyDetails.costItems,
                 ),
             ],
           ),
@@ -509,7 +474,7 @@ class DateRangePickerWidget extends StatelessWidget {
 class EnergyChartWidget extends StatelessWidget {
   final String title;
   final String totalValue;
-  final List<DataItem> dataItems;
+  final List<EnergyDataItem> dataItems;
 
   const EnergyChartWidget({
     Key? key,
@@ -567,7 +532,7 @@ class EnergyChartWidget extends StatelessWidget {
 
 // Data Item Card
 class DataItemCard extends StatelessWidget {
-  final DataItem item;
+  final EnergyDataItem item;
 
   const DataItemCard({Key? key, required this.item}) : super(key: key);
 
@@ -652,7 +617,7 @@ class DataItemCard extends StatelessWidget {
 
 // Data & Cost Info Widget
 class DataCostInfoWidget extends StatefulWidget {
-  final List<CostDataItemLocal> dataItems;
+  final List<CostDataItem> dataItems;
 
   const DataCostInfoWidget({Key? key, required this.dataItems})
     : super(key: key);
@@ -770,33 +735,4 @@ class _DataCostInfoWidgetState extends State<DataCostInfoWidget> {
       ),
     );
   }
-}
-
-// Data Models (Local to this screen)
-class DataItem {
-  final String label;
-  final Color color;
-  final String data;
-  final String cost;
-
-  const DataItem({
-    required this.label,
-    required this.color,
-    required this.data,
-    required this.cost,
-  });
-}
-
-class CostDataItemLocal {
-  final String dataLabel;
-  final String dataValue;
-  final String costLabel;
-  final String costValue;
-
-  const CostDataItemLocal({
-    required this.dataLabel,
-    required this.dataValue,
-    required this.costLabel,
-    required this.costValue,
-  });
 }

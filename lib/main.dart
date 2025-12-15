@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_control_and_monitoring_system/screens/dashboard_screen.dart';
-import 'package:flutter_control_and_monitoring_system/screens/data_details_screen.dart';
 import 'package:flutter_control_and_monitoring_system/screens/login_screen.dart';
 
 void main() {
