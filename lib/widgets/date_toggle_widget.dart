@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_control_and_monitoring_system/core/app_colors.dart';
 
 class DateToggleWidget extends StatelessWidget {
   final bool isTodayData;
@@ -23,15 +23,17 @@ class DateToggleWidget extends StatelessWidget {
               Icon(
                 Icons.circle,
                 size: 16,
-                color: isTodayData ? const Color(0xFF0098FF) : Colors.grey[400],
+                color: isTodayData
+                    ? AppColors.primaryBlue
+                    : AppColors.borderGrey,
               ),
               const SizedBox(width: 8),
               Text(
                 'Today Data',
                 style: TextStyle(
                   color: isTodayData
-                      ? const Color(0xFF0098FF)
-                      : Colors.grey[600],
+                      ? AppColors.primaryBlue
+                      : AppColors.borderGrey,
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
                 ),
@@ -48,16 +50,16 @@ class DateToggleWidget extends StatelessWidget {
                 Icons.circle,
                 size: 16,
                 color: !isTodayData
-                    ? const Color(0xFF0098FF)
-                    : Colors.grey[400],
+                    ? AppColors.primaryBlue
+                    : AppColors.borderGrey,
               ),
               const SizedBox(width: 8),
               Text(
                 'Custom Date Data',
                 style: TextStyle(
                   color: !isTodayData
-                      ? const Color(0xFF0098FF)
-                      : Colors.grey[600],
+                      ? AppColors.primaryBlue
+                      : AppColors.borderGrey,
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
                 ),

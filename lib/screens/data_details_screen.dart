@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_control_and_monitoring_system/core/app_colors.dart';
 import 'package:flutter_control_and_monitoring_system/models/data_source.dart';
+import 'package:flutter_control_and_monitoring_system/models/energy_data_item.dart';
 import 'package:flutter_control_and_monitoring_system/widgets/view_toggle_widget.dart';
 import 'package:flutter_control_and_monitoring_system/widgets/circular_progress_widget.dart';
 import 'package:flutter_control_and_monitoring_system/widgets/date_toggle_widget.dart';
@@ -23,6 +24,8 @@ class _DataViewScreenState extends State<DataDetailsScreen> {
   bool isTodayData = true;
   DateTime? fromDate;
   DateTime? toDate;
+  String searchQuery = '';
+  bool isSearchVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +55,7 @@ class _DataViewScreenState extends State<DataDetailsScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          padding: const EdgeInsets.only(top: 16.0),
           child: LayoutBuilder(
             builder: (context, constraints) {
               return ConstrainedBox(
@@ -70,6 +73,7 @@ class _DataViewScreenState extends State<DataDetailsScreen> {
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
+                          border: Border.all(color: AppColors.borderGrey),
                           borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(16),
                             topRight: Radius.circular(16),
@@ -80,7 +84,12 @@ class _DataViewScreenState extends State<DataDetailsScreen> {
                     ),
 
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      padding: const EdgeInsets.only(
+                        top: 0.0,
+                        bottom: 24,
+                        left: 24,
+                        right: 25,
+                      ),
                       child: Column(
                         children: [
                           // ViewToggleWidget
@@ -127,6 +136,8 @@ class _DataViewScreenState extends State<DataDetailsScreen> {
                               DateRangePickerWidget(
                                 fromDate: fromDate,
                                 toDate: toDate,
+                                searchQuery: searchQuery,
+                                isSearchVisible: isSearchVisible,
                                 onFromDateChanged: (date) {
                                   setState(() {
                                     fromDate = date;
@@ -137,7 +148,24 @@ class _DataViewScreenState extends State<DataDetailsScreen> {
                                     toDate = date;
                                   });
                                 },
-                                onSearch: () {},
+                                onSearchQueryChanged: (query) {
+                                  setState(() {
+                                    searchQuery = query;
+                                  });
+                                },
+                                onSearchToggle: () {
+                                  setState(() {
+                                    isSearchVisible = !isSearchVisible;
+                                    if (!isSearchVisible) {
+                                      searchQuery =
+                                          ''; // Clear search when hiding
+                                    }
+                                  });
+                                },
+                                onSearch: () {
+                                  // Search button pressed (already live filtering via onSearchQueryChanged)
+                                  setState(() {});
+                                },
                               ),
                             ],
 
@@ -167,10 +195,9 @@ class _DataViewScreenState extends State<DataDetailsScreen> {
                                       .dataSource
                                       .energyDetails
                                       .chartTotalValue,
-                                  dataItems:
-                                      widget.dataSource.energyDetails.dataItems,
+                                  dataItems: _getFilteredDataItems(),
                                 ),
-                                const SizedBox(height: 24),
+                                const SizedBox(height: 12),
                                 EnergyChartWidget(
                                   title:
                                       '${widget.dataSource.energyDetails.chartTitle} (History)',
@@ -178,8 +205,7 @@ class _DataViewScreenState extends State<DataDetailsScreen> {
                                       .dataSource
                                       .energyDetails
                                       .chartTotalValue,
-                                  dataItems:
-                                      widget.dataSource.energyDetails.dataItems,
+                                  dataItems: _getFilteredDataItems(),
                                 ),
                               ],
                             )
@@ -199,5 +225,17 @@ class _DataViewScreenState extends State<DataDetailsScreen> {
         ),
       ),
     );
+  }
+
+  List<EnergyDataItem> _getFilteredDataItems() {
+    if (searchQuery.isEmpty) {
+      return widget.dataSource.energyDetails.dataItems;
+    }
+    return widget.dataSource.energyDetails.dataItems
+        .where(
+          (item) =>
+              item.label.toLowerCase().contains(searchQuery.toLowerCase()),
+        )
+        .toList();
   }
 }
