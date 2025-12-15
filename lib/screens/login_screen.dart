@@ -32,76 +32,81 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF0098FF),
-      body: Column(
-        children: [
-          // Top blue section with logo
-          Container(
-            width: double.infinity,
-            decoration: const BoxDecoration(color: Color(0xFF0098FF)),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 60),
-              child: Column(
-                children: [
-                  // Logo
-                  Container(
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Center(
-                      child: Icon(
-                        Icons.dvr,
-                        size: 50,
-                        color: Color(0xFF0098FF),
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Column(
+          children: [
+            // Top blue section with logo
+            Container(
+              width: double.infinity,
+              decoration: const BoxDecoration(color: Color(0xFF0098FF)),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 60),
+                child: Column(
+                  children: [
+                    // Logo
+                    Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Icon(
+                          Icons.dvr,
+                          size: 50,
+                          color: Color(0xFF0098FF),
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 24),
-                  // Title
-                  const Text(
-                    'SCUBE',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2,
+                    const SizedBox(height: 24),
+                    // Title
+                    const Text(
+                      'SCUBE',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 2,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'Control & Monitoring System',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
+                    const SizedBox(height: 8),
+                    const Text(
+                      'Control & Monitoring System',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-
-          // Login/Signup form section fills the remaining space
-          Expanded(
-            child: Container(
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(32),
-                  topRight: Radius.circular(32),
+                  ],
                 ),
               ),
-              child: Column(
-                children: [
-                  Padding(
+            ),
+
+            // Login/Signup
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(32),
+                    topRight: Radius.circular(32),
+                  ),
+                ),
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom,
+                  ),
+                  child: Padding(
                     padding: const EdgeInsets.all(24),
                     child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         const SizedBox(height: 20),
-                        
+
                         // Login/Signup title
                         Text(
                           isLoginMode ? 'Login' : 'Signup',
@@ -249,11 +254,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                   ),
-                ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
