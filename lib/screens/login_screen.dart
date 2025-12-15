@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_control_and_monitoring_system/screens/dashboard_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -30,18 +31,23 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: const Color(0xFF0098FF),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Column(
           children: [
+            SizedBox(height: screenHeight / 15),
             // Top blue section with logo
             Container(
+              alignment: Alignment.center,
               width: double.infinity,
+              height: screenHeight / 3,
               decoration: const BoxDecoration(color: Color(0xFF0098FF)),
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 60),
+                padding: EdgeInsets.symmetric(vertical: screenHeight / 16),
                 child: Column(
                   children: [
                     // Logo
@@ -66,17 +72,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       'SCUBE',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 28,
+                        fontSize: 24,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 2,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 2),
                     const Text(
                       'Control & Monitoring System',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 16,
+                        fontSize: 20,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -177,12 +183,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         // Forget password
                         if (isLoginMode) ...[
-                          const SizedBox(height: 12),
                           Align(
                             alignment: Alignment.centerRight,
                             child: TextButton(
                               onPressed: () {
-                                // Handle forget password
+                                // Forget Password Functions
                               },
                               child: Text(
                                 'Forget password?',
@@ -194,7 +199,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ] else
-                          const SizedBox(height: 24),
+                          const SizedBox(height: 48),
 
                         const SizedBox(height: 8),
 
@@ -204,7 +209,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           height: 56,
                           child: ElevatedButton(
                             onPressed: () {
-                              // Handle login/signup
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (_) => const DashboardScreen(),
+                                ),
+                              );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF0098FF),

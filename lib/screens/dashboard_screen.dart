@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_control_and_monitoring_system/widgets/circular_chart.dart';
 
-class SCMDashboardScreen extends StatefulWidget {
-  const SCMDashboardScreen({Key? key}) : super(key: key);
+class DashboardScreen extends StatefulWidget {
+  const DashboardScreen({Key? key}) : super(key: key);
 
   @override
-  State<SCMDashboardScreen> createState() => _SCMDashboardScreenState();
+  State<DashboardScreen> createState() => _SCMDashboardScreenState();
 }
 
-class _SCMDashboardScreenState extends State<SCMDashboardScreen> {
+class _SCMDashboardScreenState extends State<DashboardScreen> {
   int selectedTabIndex = 0;
   bool isSourceSelected = true;
 
@@ -100,44 +101,7 @@ class _SCMDashboardScreenState extends State<SCMDashboardScreen> {
                     const SizedBox(height: 32),
 
                     // Circular Chart
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        SizedBox(
-                          width: 220,
-                          height: 220,
-                          child: CircularProgressIndicator(
-                            value: 0.75,
-                            strokeWidth: 28,
-                            backgroundColor: Colors.grey[300],
-                            valueColor: const AlwaysStoppedAnimation<Color>(
-                              Color(0xFF3D8FC6),
-                            ),
-                          ),
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              'Total Power',
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.grey[700],
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            const Text(
-                              '5.53 kw',
-                              style: TextStyle(
-                                fontSize: 28,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black87,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                    const CircularChart(),
 
                     const SizedBox(height: 32),
 
