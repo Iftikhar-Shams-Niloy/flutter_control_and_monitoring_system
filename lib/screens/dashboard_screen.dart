@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_control_and_monitoring_system/core/app_colors.dart';
 import 'package:flutter_control_and_monitoring_system/dummy_data.dart';
 import 'package:flutter_control_and_monitoring_system/screens/data_details_screen.dart';
+import 'package:flutter_control_and_monitoring_system/screens/menu_screen.dart';
 import 'package:flutter_control_and_monitoring_system/widgets/circular_chart.dart';
 import 'package:flutter_control_and_monitoring_system/widgets/data_card.dart';
 import 'package:flutter_control_and_monitoring_system/widgets/menu_card.dart';
@@ -272,29 +273,77 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
                 crossAxisSpacing: 16,
                 childAspectRatio: 4.0,
                 children: [
-                  const MenuCard(
+                  MenuCard(
                     'Analysis Pro',
                     'assets/icons/analysis_pro_icon.png',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MenuScreen(),
+                        ),
+                      );
+                    },
                   ),
-                  const MenuCard(
+                  MenuCard(
                     'G. Generator',
                     'assets/icons/generator_icon.png',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MenuScreen(),
+                        ),
+                      );
+                    },
                   ),
-                  const MenuCard(
+                  MenuCard(
                     'Plant Summery',
                     'assets/icons/plant_summery_icon.png',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MenuScreen(),
+                        ),
+                      );
+                    },
                   ),
-                  const MenuCard(
+                  MenuCard(
                     'Natural Gas',
                     'assets/icons/natural_gas_icon.png',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MenuScreen(),
+                        ),
+                      );
+                    },
                   ),
-                  const MenuCard(
+                  MenuCard(
                     'D. Generator',
                     'assets/icons/generator_icon.png',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MenuScreen(),
+                        ),
+                      );
+                    },
                   ),
-                  const MenuCard(
+                  MenuCard(
                     'Water Process',
                     'assets/icons/water_process_icon.png',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MenuScreen(),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
