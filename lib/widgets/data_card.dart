@@ -17,11 +17,10 @@ class DataCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: dataSource.isActive ? AppColors.cardActive : Colors.grey[200],
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.grey[300]!, width: 1),
+          border: Border.all(color: AppColors.borderGrey, width: 1),
         ),
         child: Row(
           children: [
-            
             Container(
               width: 50,
               height: 50,

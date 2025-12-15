@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_control_and_monitoring_system/core/app_colors.dart';
 import 'package:flutter_control_and_monitoring_system/screens/login_screen.dart';
 
 void main() {
@@ -12,7 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
+      theme: ThemeData(
+        colorScheme: .fromSeed(seedColor: AppColors.primaryBlue),
+      ),
       home: const LoginScreen(),
     );
   }

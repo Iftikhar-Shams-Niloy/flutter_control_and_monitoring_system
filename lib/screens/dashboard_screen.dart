@@ -7,7 +7,7 @@ import 'package:flutter_control_and_monitoring_system/widgets/data_card.dart';
 import 'package:flutter_control_and_monitoring_system/widgets/menu_card.dart';
 
 class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({Key? key}) : super(key: key);
+  const DashboardScreen({super.key});
 
   @override
   State<DashboardScreen> createState() => _SCMDashboardScreenState();
@@ -69,6 +69,7 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: AppColors.borderGrey, width: 1),
                 ),
                 child: Column(
                   children: [
@@ -194,30 +195,63 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
 
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: SizedBox(
-                        height: 3 * 96,
-                        child: ListView.separated(
-                          padding: EdgeInsets.zero,
-                          physics: const AlwaysScrollableScrollPhysics(),
-                          itemCount: DummyData.dataSources.length,
-                          separatorBuilder: (_, __) =>
-                              const SizedBox(height: 12),
-                          itemBuilder: (context, index) {
-                            final dataSource = DummyData.dataSources[index];
-                            return DataCard(
-                              dataSource: dataSource,
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => DataDetailsScreen(
-                                      dataSource: dataSource,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                              height: 3 * 96,
+                              child: ListView.separated(
+                                padding: EdgeInsets.zero,
+                                physics: const AlwaysScrollableScrollPhysics(),
+                                itemCount: DummyData.dataSources.length,
+                                separatorBuilder: (_, _) =>
+                                    const SizedBox(height: 12),
+                                itemBuilder: (context, index) {
+                                  final dataSource =
+                                      DummyData.dataSources[index];
+                                  return DataCard(
+                                    dataSource: dataSource,
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              DataDetailsScreen(
+                                                dataSource: dataSource,
+                                              ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+
+                            // subtle bottom gradient overlay to suggest negative elevation
+                            Positioned(
+                              left: 0,
+                              right: 0,
+                              bottom: 0,
+                              height: 48,
+                              child: IgnorePointer(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [
+                                        Colors.transparent,
+                                        AppColors.textPrimaryBlue.withValues(
+                                          alpha: 0.50,
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                );
-                              },
-                            );
-                          },
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),

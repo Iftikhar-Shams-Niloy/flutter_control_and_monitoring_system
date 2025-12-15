@@ -9,7 +9,6 @@ class AppColors {
   static const dataOrange = Color(0xFFFB902E);
   static const dataBlue = Color(0xFF78C6FF);
 
-  // Text Colors
   static const textPrimaryBlue = Color(0xFF082438);
   static const textLightGrey = Color(0xFF646984);
   static const textHintGrey = Color(0xFF5D5D5D);

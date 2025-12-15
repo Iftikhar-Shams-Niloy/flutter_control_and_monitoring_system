@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_control_and_monitoring_system/core/app_colors.dart';
 
 class MenuCard extends StatelessWidget {
   const MenuCard(this.title, this.iconPath, {super.key});
@@ -13,11 +14,12 @@ class MenuCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: AppColors.borderGrey, width: 1),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 4,
-            offset: const Offset(0, 2),
+            offset: const Offset(2, 2),
           ),
         ],
       ),
@@ -38,7 +40,7 @@ class MenuCard extends StatelessWidget {
               child: Text(
                 title,
                 style: const TextStyle(
-                  fontSize: 15,
+                  fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: Color(0xFF5A6C7D),
                 ),

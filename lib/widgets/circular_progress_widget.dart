@@ -88,8 +88,8 @@ class _ArcProgressPainter extends CustomPainter {
 
     canvas.drawArc(
       rect,
-      math.pi * 0.75, // Start at 135 degrees (bottom-left)
-      math.pi * 1.5, // Sweep 270 degrees (3/4 circle)
+      math.pi * 0.75, // Start at 135 degrees 
+      math.pi * 1.5, // Sweep 270 degrees
       false,
       backgroundPaint,
     );
@@ -104,8 +104,8 @@ class _ArcProgressPainter extends CustomPainter {
 
       canvas.drawArc(
         rect,
-        math.pi * 0.75, // Start at 135 degrees (bottom-left)
-        math.pi * 1.5 * percentage, // Sweep based on percentage
+        math.pi * 0.75, 
+        math.pi * 1.5 * percentage,
         false,
         progressPaint,
       );
