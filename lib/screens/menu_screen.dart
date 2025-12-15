@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_control_and_monitoring_system/core/app_colors.dart';
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
@@ -6,42 +7,26 @@ class MenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE8F1F8),
+      backgroundColor: AppColors.backgroundGrey,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
         title: const Text(
           'SCM',
           style: TextStyle(
-            color: Colors.black,
+            color: AppColors.textPrimaryBlue,
             fontSize: 20,
             fontWeight: FontWeight.w600,
           ),
         ),
         centerTitle: true,
         actions: [
-          Stack(
-            children: [
-              IconButton(
-                icon: const Icon(
-                  Icons.notifications_outlined,
-                  color: Colors.black,
-                ),
-                onPressed: () {},
-              ),
-              Positioned(
-                right: 12,
-                top: 12,
-                child: Container(
-                  width: 8,
-                  height: 8,
-                  decoration: const BoxDecoration(
-                    color: Colors.red,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-              ),
-            ],
+          IconButton(
+            icon: Image.asset(
+              "assets/icons/notification_on_icon.png",
+              height: 20,
+            ),
+            onPressed: () {},
           ),
         ],
       ),
@@ -86,7 +71,7 @@ class MenuScreen extends StatelessWidget {
                   'No data is here,',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.grey,
+                    color: AppColors.textHintGrey,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -95,7 +80,7 @@ class MenuScreen extends StatelessWidget {
                   'please wait.',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.grey,
+                    color: AppColors.textHintGrey,
                     fontWeight: FontWeight.w400,
                   ),
                 ),

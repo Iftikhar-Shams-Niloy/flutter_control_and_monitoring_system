@@ -35,28 +35,12 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
         ),
         centerTitle: true,
         actions: [
-          Stack(
-            children: [
-              IconButton(
-                icon: const Icon(
-                  Icons.notifications_outlined,
-                  color: Colors.black,
-                ),
-                onPressed: () {},
-              ),
-              Positioned(
-                right: 12,
-                top: 12,
-                child: Container(
-                  width: 8,
-                  height: 8,
-                  decoration: const BoxDecoration(
-                    color: Colors.red,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-              ),
-            ],
+          IconButton(
+            icon: Image.asset(
+              "assets/icons/notification_on_icon.png",
+              height: 20,
+            ),
+            onPressed: () {},
           ),
         ],
       ),
@@ -75,11 +59,40 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
                 child: Column(
                   children: [
                     // Tabs
-                    Row(
+                    Stack(
                       children: [
-                        _buildTab('Summery', 0),
-                        _buildTab('SLD', 1),
-                        _buildTab('Data', 2),
+                        // Animated sliding indicator
+                        AnimatedPositioned(
+                          duration: const Duration(milliseconds: 250),
+                          curve: Curves.easeInOut,
+                          left:
+                              selectedTabIndex *
+                              (MediaQuery.of(context).size.width - 32) /
+                              3,
+                          right:
+                              (2 - selectedTabIndex) *
+                              (MediaQuery.of(context).size.width - 32) /
+                              3,
+                          top: 0,
+                          bottom: 0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: AppColors.primaryBlue,
+                              borderRadius: BorderRadius.only(
+                                topLeft: const Radius.circular(16),
+                                topRight: const Radius.circular(16),
+                              ),
+                            ),
+                          ),
+                        ),
+                        // Tab buttons
+                        Row(
+                          children: [
+                            _buildTab('Summery', 0),
+                            _buildTab('SLD', 1),
+                            _buildTab('Data', 2),
+                          ],
+                        ),
                       ],
                     ),
 
@@ -368,7 +381,7 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
             Container(
               padding: const EdgeInsets.symmetric(vertical: 16),
               decoration: BoxDecoration(
-                color: isSelected ? AppColors.primaryBlue : Colors.transparent,
+                color: Colors.transparent,
                 borderRadius: BorderRadius.only(
                   topLeft: const Radius.circular(16),
                   topRight: const Radius.circular(16),

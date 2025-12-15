@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_control_and_monitoring_system/core/app_colors.dart';
 import 'package:flutter_control_and_monitoring_system/models/data_source.dart';
 import 'package:flutter_control_and_monitoring_system/widgets/view_toggle_widget.dart';
 import 'package:flutter_control_and_monitoring_system/widgets/circular_progress_widget.dart';
@@ -26,14 +27,10 @@ class _DataViewScreenState extends State<DataDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE8EEF2),
+      backgroundColor: AppColors.backgroundGrey,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
-        ),
         title: Text(
           widget.dataSource.title,
           style: const TextStyle(
@@ -44,28 +41,12 @@ class _DataViewScreenState extends State<DataDetailsScreen> {
         ),
         centerTitle: true,
         actions: [
-          Stack(
-            children: [
-              IconButton(
-                icon: const Icon(
-                  Icons.notifications_outlined,
-                  color: Colors.black,
-                ),
-                onPressed: () {},
-              ),
-              Positioned(
-                right: 12,
-                top: 12,
-                child: Container(
-                  width: 8,
-                  height: 8,
-                  decoration: const BoxDecoration(
-                    color: Colors.red,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-              ),
-            ],
+          IconButton(
+            icon: Image.asset(
+              "assets/icons/notification_on_icon.png",
+              height: 20,
+            ),
+            onPressed: () {},
           ),
         ],
       ),
@@ -99,7 +80,6 @@ class _DataViewScreenState extends State<DataDetailsScreen> {
 
               const SizedBox(height: 24),
 
-              // Today Data / Custom Date Data Toggle (only for Data View)
               if (isDataView) ...[
                 DateToggleWidget(
                   isTodayData: isTodayData,
@@ -132,7 +112,7 @@ class _DataViewScreenState extends State<DataDetailsScreen> {
                   ),
                 ],
 
-                const SizedBox(height: 24),
+                const SizedBox(height: 12),
               ],
 
               // Energy Chart Section
