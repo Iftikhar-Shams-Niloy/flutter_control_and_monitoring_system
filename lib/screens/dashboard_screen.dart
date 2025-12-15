@@ -259,16 +259,34 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
                 crossAxisCount: 2,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                mainAxisSpacing: 12,
-                crossAxisSpacing: 12,
-                childAspectRatio: 2.5,
+                mainAxisSpacing: 8,
+                crossAxisSpacing: 16,
+                childAspectRatio: 4.0,
                 children: [
-                  const MenuCard('Analysis Pro', 'analysis_icon.png'),
-                  const MenuCard('G. Generator', 'g_generator_icon.png'),
-                  const MenuCard('Plant Summery', 'plant_icon.png'),
-                  const MenuCard('Natural Gas', 'gas_icon.png'),
-                  const MenuCard('D. Generator', 'd_generator_icon.png'),
-                  const MenuCard('Water Process', 'water_icon.png'),
+                  const MenuCard(
+                    'Analysis Pro',
+                    'assets/icons/analysis_pro_icon.png',
+                  ),
+                  const MenuCard(
+                    'G. Generator',
+                    'assets/icons/generator_icon.png',
+                  ),
+                  const MenuCard(
+                    'Plant Summery',
+                    'assets/icons/plant_summery_icon.png',
+                  ),
+                  const MenuCard(
+                    'Natural Gas',
+                    'assets/icons/natural_gas_icon.png',
+                  ),
+                  const MenuCard(
+                    'D. Generator',
+                    'assets/icons/generator_icon.png',
+                  ),
+                  const MenuCard(
+                    'Water Process',
+                    'assets/icons/water_process_icon.png',
+                  ),
                 ],
               ),
             ],
@@ -290,7 +308,7 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 16),
           decoration: BoxDecoration(
-            color: isSelected ? const Color(0xFF0098FF) : Colors.transparent,
+            color: isSelected ? AppColors.primaryBlue : Colors.transparent,
             borderRadius: BorderRadius.only(
               topLeft: index == 0 ? const Radius.circular(16) : Radius.zero,
               topRight: index == 2 ? const Radius.circular(16) : Radius.zero,

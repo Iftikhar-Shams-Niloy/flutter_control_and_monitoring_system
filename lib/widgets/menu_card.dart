@@ -9,6 +9,7 @@ class MenuCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 42,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
@@ -21,13 +22,13 @@ class MenuCard extends StatelessWidget {
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
         child: Row(
           children: [
             Image.asset(
               iconPath,
-              width: 36,
-              height: 36,
+              width: 32,
+              height: 32,
               errorBuilder: (context, error, stackTrace) {
                 return Icon(Icons.image, size: 36, color: Colors.grey[400]);
               },
