@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_control_and_monitoring_system/core/app_colors.dart';
 
 class DataCard extends StatelessWidget {
   final String title;
@@ -13,15 +14,15 @@ class DataCard extends StatelessWidget {
     this.iconPath,
     this.indicatorColor,
     this.isActive, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: isActive ? const Color(0xFFE8F4F8) : Colors.grey[200],
+        color: isActive ? AppColors.cardActive : Colors.grey[200],
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: Colors.grey[300]!, width: 1),
       ),

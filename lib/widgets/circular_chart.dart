@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_control_and_monitoring_system/core/app_colors.dart';
 
 class CircularChart extends StatelessWidget {
   final double value;
@@ -7,12 +8,12 @@ class CircularChart extends StatelessWidget {
   final String valueText;
 
   const CircularChart({
-    Key? key,
-    this.value = 0.75,
-    this.size = 220,
+    super.key,
+    this.value = 1,
+    this.size = 150,
     this.title = 'Total Power',
     this.valueText = '5.53 kw',
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +25,11 @@ class CircularChart extends StatelessWidget {
           height: size,
           child: CircularProgressIndicator(
             value: value,
-            strokeWidth: 28,
+            strokeWidth: 24,
             backgroundColor: Colors.grey[300],
-            valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF3D8FC6)),
+            valueColor: const AlwaysStoppedAnimation<Color>(
+              AppColors.circleBlue,
+            ),
           ),
         ),
         Column(
@@ -35,18 +38,17 @@ class CircularChart extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                fontSize: 18,
-                color: Colors.grey[700],
+                fontSize: 16,
+                color: AppColors.textPrimaryBlue,
                 fontWeight: FontWeight.w400,
               ),
             ),
-            const SizedBox(height: 4),
             Text(
               valueText,
               style: const TextStyle(
-                fontSize: 28,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.black87,
+                color: AppColors.textPrimaryBlue,
               ),
             ),
           ],

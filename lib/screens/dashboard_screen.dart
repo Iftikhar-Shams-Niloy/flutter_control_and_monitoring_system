@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_control_and_monitoring_system/core/app_colors.dart';
 import 'package:flutter_control_and_monitoring_system/widgets/circular_chart.dart';
 import 'package:flutter_control_and_monitoring_system/widgets/data_card.dart';
 import 'package:flutter_control_and_monitoring_system/widgets/menu_card.dart';
@@ -79,22 +80,21 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
                     ),
                     const SizedBox(height: 24),
 
-                    // Electricity Title
                     const Text(
                       'Electricity',
                       style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.grey,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.textHintGrey,
                         letterSpacing: 0.5,
                       ),
                     ),
 
                     const SizedBox(height: 8),
                     Container(
-                      height: 1,
+                      height: 2,
                       margin: const EdgeInsets.symmetric(horizontal: 24),
-                      color: Colors.grey[300],
+                      color: AppColors.borderGrey,
                     ),
                     const SizedBox(height: 32),
 
@@ -107,10 +107,9 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       child: Container(
-                        height: 52,
-                        padding: const EdgeInsets.all(4),
+                        height: 48,
                         decoration: BoxDecoration(
-                          color: Colors.grey[200],
+                          color: AppColors.sliderBackgroudnGrey,
                           borderRadius: BorderRadius.circular(30),
                         ),
                         child: Stack(
@@ -124,12 +123,8 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
                               child: FractionallySizedBox(
                                 widthFactor: 0.5,
                                 child: Container(
-                                  margin: const EdgeInsets.symmetric(
-                                    horizontal: 2,
-                                    vertical: 2,
-                                  ),
                                   decoration: BoxDecoration(
-                                    color: const Color(0xFF0098FF),
+                                    color: AppColors.primaryBlue,
                                     borderRadius: BorderRadius.circular(28),
                                   ),
                                 ),
@@ -150,9 +145,9 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
                                         style: TextStyle(
                                           color: isSourceSelected
                                               ? Colors.white
-                                              : Colors.grey[600],
+                                              : AppColors.textHintGrey,
                                           fontSize: 18,
-                                          fontWeight: FontWeight.w600,
+                                          fontWeight: FontWeight.w400,
                                         ),
                                       ),
                                     ),
@@ -170,9 +165,9 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
                                         style: TextStyle(
                                           color: !isSourceSelected
                                               ? Colors.white
-                                              : Colors.grey[600],
+                                              : AppColors.textHintGrey,
                                           fontSize: 18,
-                                          fontWeight: FontWeight.w600,
+                                          fontWeight: FontWeight.w400,
                                         ),
                                       ),
                                     ),
@@ -185,22 +180,20 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
                       ),
                     ),
 
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 12),
 
                     Container(
                       height: 3,
                       margin: const EdgeInsets.symmetric(horizontal: 24),
-                      color: Colors.grey[300],
+                      color: AppColors.borderGrey,
                     ),
 
                     const SizedBox(height: 16),
 
-                    // Data View Cards (show 3 visible, scroll if more)
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: SizedBox(
-                        // approx height for 3 cards + spacing (adjust if needed)
-                        height: 3 * 118,
+                        height: 3 * 102,
                         child: Builder(
                           builder: (context) {
                             final cards = [
@@ -317,6 +310,4 @@ class _SCMDashboardScreenState extends State<DashboardScreen> {
       ),
     );
   }
-
-  // MenuCard widget moved to `lib/widgets/menu_card.dart` as `MenuCard`.
 }
