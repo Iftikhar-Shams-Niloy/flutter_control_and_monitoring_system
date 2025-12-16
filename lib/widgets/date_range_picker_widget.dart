@@ -113,10 +113,10 @@ class DateRangePickerWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Icon(
-                        Icons.calendar_today,
-                        size: 20,
-                        color: AppColors.textHintGrey,
+                      Image.asset(
+                        "assets/icons/date_icon.png",
+                        height: 20,
+                        width: 20,
                       ),
                     ],
                   ),
@@ -157,10 +157,10 @@ class DateRangePickerWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Icon(
-                        Icons.calendar_today,
-                        size: 20,
-                        color: AppColors.textHintGrey,
+                      Image.asset(
+                        "assets/icons/date_icon.png",
+                        height: 20,
+                        width: 20,
                       ),
                     ],
                   ),

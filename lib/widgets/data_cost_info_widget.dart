@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_control_and_monitoring_system/core/app_colors.dart';
 import 'package:flutter_control_and_monitoring_system/models/cost_data_item.dart';
 
 class DataCostInfoWidget extends StatefulWidget {
@@ -16,11 +17,10 @@ class _DataCostInfoWidgetState extends State<DataCostInfoWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.grey[300]!),
+        border: Border.all(color: AppColors.borderGrey),
       ),
       child: Column(
         children: [
@@ -30,42 +30,53 @@ class _DataCostInfoWidgetState extends State<DataCostInfoWidget> {
                 isExpanded = !isExpanded;
               });
             },
-            child: Row(
-              children: [
-                const Icon(Icons.bar_chart, color: Colors.grey, size: 28),
-                const SizedBox(width: 12),
-                const Text(
-                  'Data & Cost Info',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
+            child: Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: AppColors.borderGrey),
+              ),
+              child: Row(
+                children: [
+                  Image.asset(
+                    "assets/icons/statistics_icon.png",
+                    height: 24,
+                    width: 24,
                   ),
-                ),
-                const Spacer(),
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF0098FF),
-                    shape: BoxShape.circle,
+                  const SizedBox(width: 12),
+                  const Text(
+                    'Data & Cost Info',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                    ),
                   ),
-                  child: Icon(
+
+                  const Spacer(),
+
+                  Image.asset(
                     isExpanded
-                        ? Icons.keyboard_arrow_up
-                        : Icons.keyboard_arrow_down,
-                    color: Colors.white,
-                    size: 20,
+                        ? "assets/icons/dropdown_up.png"
+                        : "assets/icons/dropdown_down.png",
+                    height: 24,
+                    width: 24,
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           if (isExpanded) ...[
-            const SizedBox(height: 20),
+            const SizedBox(height: 14),
             ...widget.dataItems
                 .map(
                   (item) => Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
+                    padding: const EdgeInsets.only(
+                      bottom: 12,
+                      left: 12,
+                      right: 12,
+                    ),
                     child: Column(
                       children: [
                         Row(
@@ -74,7 +85,7 @@ class _DataCostInfoWidgetState extends State<DataCostInfoWidget> {
                               item.dataLabel,
                               style: TextStyle(
                                 fontSize: 15,
-                                color: Colors.grey[600],
+                                color: AppColors.textHintGrey,
                               ),
                             ),
                             const SizedBox(width: 8),
@@ -83,7 +94,7 @@ class _DataCostInfoWidgetState extends State<DataCostInfoWidget> {
                               style: const TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.black87,
+                                color: AppColors.textPrimaryBlue,
                               ),
                             ),
                           ],
@@ -95,7 +106,7 @@ class _DataCostInfoWidgetState extends State<DataCostInfoWidget> {
                               item.costLabel,
                               style: TextStyle(
                                 fontSize: 15,
-                                color: Colors.grey[600],
+                                color: AppColors.textHintGrey,
                               ),
                             ),
                             const SizedBox(width: 8),
@@ -104,7 +115,7 @@ class _DataCostInfoWidgetState extends State<DataCostInfoWidget> {
                               style: const TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.black87,
+                                color: AppColors.textPrimaryBlue,
                               ),
                             ),
                           ],
