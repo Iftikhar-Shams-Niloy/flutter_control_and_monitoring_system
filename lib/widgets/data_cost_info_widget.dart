@@ -67,65 +67,73 @@ class _DataCostInfoWidgetState extends State<DataCostInfoWidget> {
               ),
             ),
           ),
-          if (isExpanded) ...[
-            const SizedBox(height: 14),
-            ...widget.dataItems
-                .map(
-                  (item) => Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 12,
-                      left: 12,
-                      right: 12,
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Text(
-                              item.dataLabel,
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: AppColors.textHintGrey,
+          AnimatedSize(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+            child: isExpanded
+                ? Column(
+                    children: [
+                      const SizedBox(height: 14),
+                      ...widget.dataItems
+                          .map(
+                            (item) => Padding(
+                              padding: const EdgeInsets.only(
+                                bottom: 12,
+                                left: 12,
+                                right: 12,
+                              ),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        item.dataLabel,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: AppColors.textHintGrey,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 8),
+                                      Text(
+                                        ': ${item.dataValue}',
+                                        style: const TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.textPrimaryBlue,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        item.costLabel,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: AppColors.textHintGrey,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 8),
+                                      Text(
+                                        ': ${item.costValue}',
+                                        style: const TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.textPrimaryBlue,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
-                            const SizedBox(width: 8),
-                            Text(
-                              ': ${item.dataValue}',
-                              style: const TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.textPrimaryBlue,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 4),
-                        Row(
-                          children: [
-                            Text(
-                              item.costLabel,
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: AppColors.textHintGrey,
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              ': ${item.costValue}',
-                              style: const TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.textPrimaryBlue,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-                .toList(),
-          ],
+                          )
+                          .toList(),
+                    ],
+                  )
+                : const SizedBox.shrink(),
+          ),
         ],
       ),
     );

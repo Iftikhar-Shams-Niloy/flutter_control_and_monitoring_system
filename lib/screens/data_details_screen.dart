@@ -107,15 +107,28 @@ class _DataViewScreenState extends State<DataDetailsScreen> {
                               },
                             ),
                           ),
-                          CircularProgressWidget(
-                            value: isDataView
-                                ? widget.dataSource.energyDetails.totalValue
-                                : widget.dataSource.energyDetails.revenueValue,
-                            unit: isDataView
-                                ? widget.dataSource.energyDetails.unit
-                                : widget.dataSource.energyDetails.revenueUnit,
-                            percentage:
-                                widget.dataSource.energyDetails.percentage,
+                          AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 400),
+                            transitionBuilder: (child, animation) {
+                              return FadeTransition(
+                                opacity: animation,
+                                child: child,
+                              );
+                            },
+                            child: CircularProgressWidget(
+                              key: ValueKey(isDataView),
+                              value: isDataView
+                                  ? widget.dataSource.energyDetails.totalValue
+                                  : widget
+                                        .dataSource
+                                        .energyDetails
+                                        .revenueValue,
+                              unit: isDataView
+                                  ? widget.dataSource.energyDetails.unit
+                                  : widget.dataSource.energyDetails.revenueUnit,
+                              percentage:
+                                  widget.dataSource.energyDetails.percentage,
+                            ),
                           ),
 
                           const SizedBox(height: 24),
@@ -173,47 +186,65 @@ class _DataViewScreenState extends State<DataDetailsScreen> {
                           ],
 
                           // Energy Chart Section
-                          if (isDataView && isTodayData)
-                            EnergyChartWidget(
-                              title: widget.dataSource.energyDetails.chartTitle,
-                              totalValue: widget
-                                  .dataSource
-                                  .energyDetails
-                                  .chartTotalValue,
-                              dataItems:
-                                  widget.dataSource.energyDetails.dataItems,
-                            )
-                          else if (isDataView && !isTodayData)
-                            Column(
-                              children: [
-                                EnergyChartWidget(
-                                  title: widget
-                                      .dataSource
-                                      .energyDetails
-                                      .chartTitle,
-                                  totalValue: widget
-                                      .dataSource
-                                      .energyDetails
-                                      .chartTotalValue,
-                                  dataItems: _getFilteredDataItems(),
-                                ),
-                                const SizedBox(height: 12),
-                                EnergyChartWidget(
-                                  title:
-                                      '${widget.dataSource.energyDetails.chartTitle} (History)',
-                                  totalValue: widget
-                                      .dataSource
-                                      .energyDetails
-                                      .chartTotalValue,
-                                  dataItems: _getFilteredDataItems(),
-                                ),
-                              ],
-                            )
-                          else
-                            DataCostInfoWidget(
-                              dataItems:
-                                  widget.dataSource.energyDetails.costItems,
-                            ),
+                          AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 400),
+                            transitionBuilder: (child, animation) {
+                              return FadeTransition(
+                                opacity: animation,
+                                child: child,
+                              );
+                            },
+                            child: isDataView && isTodayData
+                                ? EnergyChartWidget(
+                                    key: const ValueKey('today_data'),
+                                    title: widget
+                                        .dataSource
+                                        .energyDetails
+                                        .chartTitle,
+                                    totalValue: widget
+                                        .dataSource
+                                        .energyDetails
+                                        .chartTotalValue,
+                                    dataItems: widget
+                                        .dataSource
+                                        .energyDetails
+                                        .dataItems,
+                                  )
+                                : isDataView && !isTodayData
+                                ? Column(
+                                    key: const ValueKey('custom_data'),
+                                    children: [
+                                      EnergyChartWidget(
+                                        title: widget
+                                            .dataSource
+                                            .energyDetails
+                                            .chartTitle,
+                                        totalValue: widget
+                                            .dataSource
+                                            .energyDetails
+                                            .chartTotalValue,
+                                        dataItems: _getFilteredDataItems(),
+                                      ),
+                                      const SizedBox(height: 12),
+                                      EnergyChartWidget(
+                                        title:
+                                            '${widget.dataSource.energyDetails.chartTitle} (History)',
+                                        totalValue: widget
+                                            .dataSource
+                                            .energyDetails
+                                            .chartTotalValue,
+                                        dataItems: _getFilteredDataItems(),
+                                      ),
+                                    ],
+                                  )
+                                : DataCostInfoWidget(
+                                    key: const ValueKey('revenue_view'),
+                                    dataItems: widget
+                                        .dataSource
+                                        .energyDetails
+                                        .costItems,
+                                  ),
+                          ),
                         ],
                       ),
                     ),
