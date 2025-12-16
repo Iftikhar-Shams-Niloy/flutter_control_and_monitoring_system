@@ -22,7 +22,7 @@
 ### Key Features
 <table>
   <tr>
-    <td>
+    <td valign= "top">
       <h4> Modern UI Design</h4>
       <ul>
         <li>Clean and intuitive interface</li>
@@ -30,7 +30,7 @@
         <li>Smooth animations and transitions</li>
       </ul>
     </td>
-    <td>
+    <td valign= "top">
       <h4> Authentication UI</h4>
       <ul>
         <li>Login & signup screen with toggle</li>
@@ -38,7 +38,7 @@
         <li>Responsive form validation design</li>
       </ul>
     </td>
-    <td>
+    <td valign= "top">
       <h4> Interactive Dashboard</h4>
       <ul>
         <li>Multi-tab navigation interface</li>
@@ -49,14 +49,14 @@
     
   </tr>
   <tr>
-    <td>
+    <td valign= "top">
       <h4> Data Visualization</h4>
       <ul>
         <li>Custom circular charts</li>
         <li>Energy chart displays with breakdown</li>
         <li>Data/Revenue view toggle interface</li>
       </ul>
-    </td>
+    </td valign= "top">
      <td>
       <h4> Date Selection UI</h4>
       <ul>
@@ -65,7 +65,7 @@
         <li>Smart searching option</li>
       </ul>
     </td>
-    <td>
+    <td valign= "top">
       <h4> Modular Components</h4>
       <ul>
         <li>Reusable widget architecture</li>
