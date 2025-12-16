@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_control_and_monitoring_system/core/app_colors.dart';
 import 'package:flutter_control_and_monitoring_system/screens/dashboard_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -51,20 +52,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   children: [
                     // Logo
-                    Container(
-                      width: 100,
+                    Image.asset(
+                      "assets/images/scube_logo.png",
                       height: 100,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Center(
-                        child: Icon(
-                          Icons.dvr,
-                          size: 50,
-                          color: Color(0xFF0098FF),
-                        ),
-                      ),
+                      width: 100,
                     ),
                     const SizedBox(height: 24),
                     // Title
@@ -127,15 +118,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         // Username
                         Container(
                           decoration: BoxDecoration(
-                            color: Colors.grey[50],
+                            color: Colors.white,
                             borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: Colors.grey[300]!),
+                            border: Border.all(color: AppColors.borderGrey),
                           ),
                           child: TextField(
                             controller: usernameController,
                             decoration: InputDecoration(
                               hintText: 'Username',
-                              hintStyle: TextStyle(color: Colors.grey[500]),
+                              hintStyle: TextStyle(
+                                color: AppColors.textHintGrey,
+                              ),
                               border: InputBorder.none,
                               contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 20,
@@ -149,16 +142,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         // Password
                         Container(
                           decoration: BoxDecoration(
-                            color: Colors.grey[50],
+                            color: Colors.white,
                             borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: Colors.grey[300]!),
+                            border: Border.all(color: AppColors.borderGrey),
                           ),
                           child: TextField(
                             controller: passwordController,
                             obscureText: !isPasswordVisible,
                             decoration: InputDecoration(
                               hintText: 'Password',
-                              hintStyle: TextStyle(color: Colors.grey[500]),
+                              hintStyle: TextStyle(
+                                color: AppColors.textHintGrey,
+                              ),
                               border: InputBorder.none,
                               contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 20,
@@ -169,7 +164,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   isPasswordVisible
                                       ? Icons.visibility
                                       : Icons.visibility_off,
-                                  color: Colors.grey[600],
+                                  color: AppColors.textHintGrey,
                                 ),
                                 onPressed: () {
                                   setState(() {
@@ -192,7 +187,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Text(
                                 'Forget password?',
                                 style: TextStyle(
-                                  color: Colors.grey[700],
+                                  color: AppColors.textHintGrey,
                                   fontSize: 14,
                                 ),
                               ),
@@ -216,7 +211,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               );
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF0098FF),
+                              backgroundColor: AppColors.primaryBlue,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
@@ -243,7 +238,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ? "Don't have any account? "
                                   : "Already have an account? ",
                               style: TextStyle(
-                                color: Colors.grey[700],
+                                color: AppColors.textHintGrey,
                                 fontSize: 14,
                               ),
                             ),
@@ -252,7 +247,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Text(
                                 isLoginMode ? 'Register Now' : 'Login',
                                 style: const TextStyle(
-                                  color: Color(0xFF0098FF),
+                                  color: AppColors.primaryBlue,
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
                                 ),

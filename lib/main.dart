@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_control_and_monitoring_system/core/app_colors.dart';
-import 'package:flutter_control_and_monitoring_system/screens/login_screen.dart';
+import 'package:flutter_control_and_monitoring_system/screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,11 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Control and Monitoring System',
       theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: AppColors.primaryBlue),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryBlue),
       ),
-      home: const LoginScreen(),
+      home: const SplashScreen(),
     );
   }
 }
