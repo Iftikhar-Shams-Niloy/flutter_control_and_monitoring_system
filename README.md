@@ -56,8 +56,8 @@
         <li>Energy chart displays with breakdown</li>
         <li>Data/Revenue view toggle interface</li>
       </ul>
-    </td valign= "top">
-     <td>
+    </td >
+     <td valign= "top">
       <h4> Date Selection UI</h4>
       <ul>
         <li>Today vs custom date toggle</li>
