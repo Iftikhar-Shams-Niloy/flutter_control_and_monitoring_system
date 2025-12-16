@@ -236,17 +236,17 @@ lib/
 ### Color Palette
 <table>
   <tr>
-    <td align="center" bgcolor="#0098FF" style="color:white; padding:10px;">
+    <td align="center" bgcolor="#0096FC" style="color:white; padding:10px;">
       <b>Primary Blue</b><br/>#0098FF
     </td>
-    <td align="center" bgcolor="#4A9FDB" style="color:white; padding:10px;">
-      <b>Chart Blue</b><br/>#4A9FDB
+    <td align="center" bgcolor="#082438" style="color:white; padding:10px;">
+      <b>Text Blue</b><br/>#4A9FDB
     </td>
-    <td align="center" bgcolor="#E8EEF2" style="padding:10px;">
+    <td align="center" bgcolor="#D9E4F1" style="padding:10px;">
       <b>Background</b><br/>#E8EEF2
     </td>
-    <td align="center" bgcolor="#FFFFFF" style="padding:10px; border:1px solid #ddd;">
-      <b>White</b><br/>#FFFFFF
+    <td align="center" bgcolor="#5D5D5D" style="padding:10px; border:1px solid #ddd;">
+      <b>Hint Grey</b><br/>#FFFFFF
     </td>
   </tr>
 </table>
@@ -309,10 +309,5 @@ If you find a bug, please open an issue with:
 ---
 
 <div align="center">
-  <p>Made with ❤️ using Flutter</p>
-  <p>⭐ Star this repository if you find it helpful!</p>
-  
-  <img src="https://img.shields.io/github/stars/Iftikhar-Shams-Niloy/flutter_control_and_monitoring_system?style=social" alt="GitHub stars"/>
-  <img src="https://img.shields.io/github/forks/Iftikhar-Shams-Niloy/flutter_control_and_monitoring_system?style=social" alt="GitHub forks"/>
-  <img src="https://img.shields.io/github/watchers/Iftikhar-Shams-Niloy/flutter_control_and_monitoring_system?style=social" alt="GitHub watchers"/>
+  <h2><< Star this repository if you find it helpful >></h2>
 </div>
